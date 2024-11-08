@@ -1,6 +1,6 @@
 resource "aws_s3_bucket" "state-bucket" {
-  bucket = var.aws_s3_bucket
-  tags = var.s3_tags
+  bucket = format("%s-%s", var.s3_bucket_prefix, var.s3_region)
+  tags   = local.s3_tags
 
   # tags = {
   #   Name        = var.s3_tags.created_by
