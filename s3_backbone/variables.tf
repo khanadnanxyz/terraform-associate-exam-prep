@@ -27,8 +27,3 @@ variable "s3_region" {
   type    = string
   default = "eu-southeast-2"
 }
-
-# variable "s3_regions" {
-#   type = list(string)
-#   default = ["eu-north-1", ]
-# }
