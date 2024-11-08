@@ -9,6 +9,11 @@ variable "s3_bucket_prefix" {
   type        = string
 }
 
+variable "s3_bucket_play" {
+  default     = "dhaka-byte-state-bucket-play"
+  description = "S3 bucket to play with terraform"
+  type        = string
+}
 
 locals {
   s3_tags = {

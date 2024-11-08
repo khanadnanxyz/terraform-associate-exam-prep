@@ -7,4 +7,18 @@ resource "aws_s3_bucket" "state-bucket" {
   #   Environment = var.s3_regions[0]
   # }
 
+  lifecycle {
+    prevent_destroy = false
+  }
+
+}
+
+resource "aws_s3_bucket" "state-bucket-play" {
+  bucket = format("%s-%s", var.s3_bucket_play, var.s3_region)
+  tags   = local.s3_tags
+
+  lifecycle {
+    prevent_destroy = false
+  }
+
 }
