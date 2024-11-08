@@ -28,7 +28,24 @@ resource "aws_s3_bucket_versioning" "state-bucket-versioning" {
   }
 }
 
-# Second bucket without encryption or versioning
+# Add lifecycle rules for object expiration and transition to Glacier
+resource "aws_s3_bucket_lifecycle_configuration" "state-bucket-lifecycle" {
+  bucket = aws_s3_bucket.state-bucket.id
+
+  rule {
+    id     = "state"
+    status = "Enabled"
+
+    filter {
+      prefix = "state/"
+    }
+
+    expiration {
+      days = 60
+    }
+  }
+}
+
 resource "aws_s3_bucket" "state-bucket-play" {
   bucket = format("%s-%s", var.s3_bucket_play, var.s3_region)
   tags   = local.s3_tags
